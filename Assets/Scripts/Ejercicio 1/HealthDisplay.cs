@@ -11,14 +11,15 @@ public class HealthDisplay : MonoBehaviour
 
     private void Awake()
     {
-        if(!health) {  return; }
-        health.PlayerHealthUpdate += UpdateText;
+        if (health)
+        {
+            health.PlayerHealthUpdate.AddListener(UpdateText);
+        }
         healthText = GetComponent<Text>();
     }
 
     private void UpdateText(int value)
     {
-        if (!healthText) {  return; }
         healthText.text = value.ToString();
     }
 }
