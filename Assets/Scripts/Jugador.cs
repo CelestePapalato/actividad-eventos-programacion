@@ -5,7 +5,6 @@ using UnityEngine;
 public class Jugador : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] int puntosDeDaño;
 
     void Update()
     {
@@ -24,22 +23,22 @@ public class Jugador : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, 5f);
-            IInteractable enemigoCercano = null;
+            IInteractable interactuable = null;
             float distanciaMinima = -1;
             foreach (Collider2D collision in collisions)
             {
-                IInteractable presentacion;
-                if (collision.gameObject.TryGetComponent<IInteractable>(out presentacion))
+                IInteractable interactuable_cercano;
+                if (collision.gameObject.TryGetComponent<IInteractable>(out interactuable_cercano))
                 {
                     float distancia = (collision.transform.position - transform.position).magnitude;
                     if (distancia < distanciaMinima || distanciaMinima < 0)
                     {
                         distanciaMinima = distancia;
-                        enemigoCercano = presentacion;
+                        interactuable = interactuable_cercano;
                     }
                 }
             }
-            enemigoCercano?.Interactuar();
+            interactuable?.Interactuar();
         }
     }
 }
