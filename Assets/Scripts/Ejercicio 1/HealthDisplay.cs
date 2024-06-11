@@ -11,11 +11,23 @@ public class HealthDisplay : MonoBehaviour
 
     private void Awake()
     {
+        healthText = GetComponent<Text>();
+    }
+
+    private void OnEnable()
+    {
         if (health)
         {
             health.PlayerHealthUpdate.AddListener(UpdateText);
         }
-        healthText = GetComponent<Text>();
+    }
+
+    private void OnDisable()
+    {
+        if (health)
+        {
+            health.PlayerHealthUpdate.RemoveListener(UpdateText);
+        }
     }
 
     private void UpdateText(int value)
