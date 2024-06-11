@@ -8,7 +8,8 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        inventory.Add(item);        
+        inventory.Add(item);
+        Debug.Log("Añadido objeto " + item.Nombre + ". Pulsa I para ver tu inventario.");
     }
 
     private void Update()
