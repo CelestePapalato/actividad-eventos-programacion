@@ -20,7 +20,7 @@ public class Jugador : MonoBehaviour
 
     void Llamar()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, 5f);
             IInteractable interactuable = null;
